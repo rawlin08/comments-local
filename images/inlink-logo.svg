@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1920 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(0.996933,0,0,1.00152,18.5149,120.529)">
+        <text x="265.701px" y="494.821px" style="font-family:'Ayuthaya';font-size:372.875px;">InLink</text>
+    </g>
+    <g transform="matrix(2.79125,0,0,2.73619,-510.04,-633.865)">
+        <ellipse cx="243.445" cy="406.271" rx="35.826" ry="36.547"/>
+    </g>
+    <g transform="matrix(2.79125,0,0,2.73619,1056.54,-620.849)">
+        <ellipse cx="243.445" cy="406.271" rx="35.826" ry="36.547"/>
+    </g>
+</svg>

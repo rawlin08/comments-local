@@ -1,23 +1,101 @@
 body {
     margin: 0;
+    background-color: #e2e2e2;
 }
+
+/* All Pages */
+/* Navigation Bar */
 
 header {
-    display: flex;
     justify-content: space-between;
-    border-bottom: 5px solid gray;
+    background-color: #008ece;
 }
 
-.links {
+nav {
     display: flex;
 }
 
-.account {
-    margin: 10px;
+.homelink {
+    padding: 20px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+}
+
+.searchBar {
+    border: none;
+    border-radius: 10px;
+    width: 400px;
+    padding: 10px;
+}
+
+.accountStructure {
+    display: flex;
+    align-items: center;
+    margin: 20px 10px 20px 10px;
+    gap: 10px;
+}
+
+.sign-up, .log-in{
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    width: 150px;
 }
 
 .accountImage {
     width: 40px;
     border: 2px solid blue;
     border-radius: 25px;
+}
+
+.account {
+    margin: 10px;
+    display: flex;
+    justify-content: right;
+}
+
+/* Index Page */
+
+.noposts {
+    text-align: center;
+}
+
+/* Login Page */
+
+.loginPage {
+    display: flex;
+    justify-content: space-around;
+}
+
+.text {
+    margin: 10px;
+}
+
+.header {
+    margin: 0;
+}
+
+.signupError {
+    color: red;
+    font-size: 13px;
+}
+
+
+.signup {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.loginError {
+    color: red;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
