@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    background-color: #DAE0E6;
+    color: #1a1a1b;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Navigation Bar */
+
+header {
+    justify-content: space-between;
+    background-color: #5357b6;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.homelink {
+    padding: 20px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#searchBar {
+    border: none;
+    border-radius: 10px;
+    width: 400px;
+    padding: 10px;
+    color: #67727E;
+}
+
+.accountStructure {
+    display: flex;
+    align-items: center;
+    margin: 20px 10px 20px 10px;
+    gap: 10px;
+}
+
+.accountControl {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    width: 150px;
+}
+
+.mainControl {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    width: 150px;
+    background-color: #1a1a1b;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.accountImage {
+    width: 40px;
+    border: 2px solid blue;
+    border-radius: 25px;
+}
+
+.account {
+    margin: 10px;
+    display: flex;
+    justify-content: right;
+}

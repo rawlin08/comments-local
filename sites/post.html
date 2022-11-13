@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments on Post</title>
+    <link rel="stylesheet" href="/styles/indexStyles.css">
+    <script src="/scripts/indexScript.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="homelink" href="/sites/index.html"><img src="/images/inlink-logo.svg" alt="InLink Logo" style="width:100px"></a>
+            <div class="search">
+                <input id="searchBar" type="search" placeholder="Search InLink">
+            </div>
+            <div class="account">
+                <div class="accountStructure">
+                    <a href="/sites/signup.html"><button class="accountControl">Sign Up</button></a>
+                    <a href="/sites/login.html"><button class="accountControl">Log in</button></a>
+                </div>
+                <button class="accountButton">
+                    <img class="accountImage" src="/images/defaultUser.png" alt="">▾
+                </button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="control">
+            <h1 class="main">Share your thoughts...</h1>
+            <div class="logCheck">
+            </div>
+        </div>
+        <div class="posts">
+            <div class="post">
+                <div>
+                    <div class="votes">
+                        <button class="upVote">+</button>
+                        <p class="score">2</p>
+                        <button class="downVote">-</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="accountDetails">
+                        <div class="aImage">
+                            <img class="accountImage" src="/images/defaultUser.png">
+                        </div>
+                        <div class="postDetails">
+                            <p class="username">maxblagun</p>
+                            <p class="timePosted">2 weeks ago</p>
+                        </div>
+                        <div class="tools">
+                            <button class="delete">✁ Delete</button>
+                            <button class="edit">✎ Edit</button>
+                            <button class="reply">↺ Reply</button>
+                        </div>
+                    </div>
+                    <div class="commentArea">
+                        <p class="comment">Woah, your project looks awesome! How long have you been coding for? I’m still new, but think I want to dive into React as well soon. Perhaps you can give me an insight on where I can learn React? Thanks!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

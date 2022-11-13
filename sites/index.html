@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comments on Post</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles/indexStyles.css">
     <script src="/scripts/indexScript.js" defer></script>
 </head>
 <body>
@@ -13,13 +13,13 @@
         <nav>
             <a class="homelink" href="/sites/index.html"><img src="/images/inlink-logo.svg" alt="InLink Logo" style="width:100px"></a>
             <div class="search">
-                <input id="searchBar" type="text" class="searchBar" placeholder="Search InLink">
-            </div>
-            <div class="accountStructure">
-                <a href="/sites/signup.html"><button class="sign-up">Sign Up</button></a>
-                <a href="/sites/login.html"><button class="log-in">Log in</button></a>
+                <input id="searchBar" type="search" placeholder="Search InLink">
             </div>
             <div class="account">
+                <div class="accountStructure">
+                    <a href="/sites/signup.html"><button class="accountControl">Sign Up</button></a>
+                    <a href="/sites/login.html"><button class="accountControl">Log in</button></a>
+                </div>
                 <button class="accountButton">
                     <img class="accountImage" src="/images/defaultUser.png" alt="">▾
                 </button>
@@ -27,11 +27,12 @@
         </nav>
     </header>
     <main>
-        <div class="newpost">
-            
+        <div class="control">
+            <h1 class="main">What Question Do You Have?</h1>
+            <div class="logCheck">
+            </div>
         </div>
         <div class="posts">
-
         </div>
     </main>
 </body>

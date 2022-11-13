@@ -1,0 +1,301 @@
+body {
+    margin: 0;
+    background-color: #DAE0E6;
+    color: #1a1a1b;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Navigation Bar */
+
+header {
+    justify-content: space-between;
+    background-color: #5357b6;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.homelink {
+    padding: 20px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#searchBar {
+    border: none;
+    border-radius: 10px;
+    width: 400px;
+    padding: 10px;
+    color: #67727E;
+}
+
+.accountStructure {
+    display: flex;
+    align-items: center;
+    margin: 20px 10px 20px 10px;
+    gap: 10px;
+}
+
+.accountControl {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    width: 150px;
+}
+
+.mainControl {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    width: 150px;
+    background-color: #1a1a1b;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.accountImage {
+    width: 40px;
+    border: 2px solid blue;
+    border-radius: 25px;
+}
+
+.account {
+    margin: 10px;
+    display: flex;
+    justify-content: right;
+}
+
+/* Index Page */
+
+.control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 30px 0;
+}
+
+.accountBttns {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.newpost {
+    display: flex;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.posts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin: 0 0 30px 0;
+    gap: 20px;
+}
+
+main {
+    margin: 0 209px;
+}
+
+.title {
+    margin: 0 0 5px 0;
+}
+
+.titleTextBox {
+    color: #67727E;
+}
+
+.subText {
+    margin: 10px 0 5px 0;
+}
+
+.right {
+    width: 616px;
+}
+
+.post {
+    display: flex;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 24px;
+    min-height: 129px;
+    width: 693px;
+    color: #67727E;
+    font-size: 16px;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.commentCount {
+    background-color: transparent;
+    border: none;
+}
+
+.goToPost {
+    background-color: transparent;
+    border: none;
+}
+
+.votes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: #f5f6fa;
+    padding: 12px 15px;
+    margin: 0 24px 0 0;
+    border-radius: 8px;
+}
+
+.upVote, .downVote {
+    border: none;
+    color: #C5C6EF;
+    font-size: 25px;
+    background-color: transparent;
+}
+
+.score {
+    color: #5357B6;
+}
+
+.accountDetails {
+    display: flex;
+}
+
+.accountDetails div:last-child {
+    margin-left: auto;
+}
+
+.commentArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.titleText {
+    resize: none;
+    border: 1px solid #e9ebf0;
+    border-radius: 8px;
+}
+
+.postDetails {
+    color: #334253;
+}
+
+.tools {
+    display: flex;
+    gap: 24px;
+}
+
+.delete {
+    color: #ED6368;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+}
+
+.edit {
+    color: #5357B6;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+}
+
+.reply {
+    color: #5357B6;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+}
+
+.comment {
+    word-break: normal;
+}
+
+.aImage {
+    margin: 0 16px 0 0;
+}
+
+.username, .timePosted {
+    margin: 5px;
+}
+
+.postAImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 16px 0 0;
+}
+
+#postContent {
+    border: 1px solid #e9ebf0;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    height: 96px;
+    width: 506px;
+    color: #67727E;
+    resize: none;
+}
+
+.sendButton {
+    margin: 0 0 0 16px;
+}
+
+.send {
+    border: none;
+    border-radius: 8px;
+    background-color: #5357b6;
+    color: #FFFFFF;
+    font-size: 16px;
+    padding: 12px 31px 12px 31px;
+}
+
+/* Login Page */
+
+.loginPage {
+    display: flex;
+    justify-content: space-around;
+}
+
+.text {
+    margin: 10px;
+}
+
+.header {
+    margin: 0;
+}
+
+.signupError {
+    color: red;
+    font-size: 13px;
+}
+
+
+.signup {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.loginError {
+    color: red;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
