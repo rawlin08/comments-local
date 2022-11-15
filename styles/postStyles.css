@@ -2,6 +2,7 @@ body {
     margin: 0;
     background-color: #DAE0E6;
     color: #1a1a1b;
+    font-family: 'Roboto', sans-serif;
 }
 
 button {
@@ -19,6 +20,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 152px;
 }
 
 nav {
@@ -98,6 +100,15 @@ nav {
     margin: 20px 0 0 0;
 }
 
+.newcomment {
+    display: flex;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 24px;
+    position: fixed;
+    bottom: 10px
+}
+
 .comments {
     display: flex;
     flex-direction: column;
@@ -130,7 +141,6 @@ nav {
 .right {
     width: 616px;
 }
-
 
 .options {
     display: flex;

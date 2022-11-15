@@ -36,7 +36,7 @@ deleteBttn.addEventListener('click', () => {
     postsDelete();
     setTimeout(() => {
         accountDelete();
-    }, 5000)
+    }, 1000)
 })
 
 function ifLoggedTrue() {
@@ -92,20 +92,13 @@ function updateDetails() {
 
 function updateAccountDetails() {
     let account = {
-        id: '',
-        name: '',
-        username: '',
-        password: '',
-        role: 'user',
+        id: currentUser.id,
+        name: nameDisplay.value,
+        username: username.value,
+        password: password.value,
+        role: accountData.role,
         picture: accountData.picture
     }
-
-    account.id = currentUser.id;
-    account.name = nameDisplay.value;
-    account.username = username.value;
-    account.password = password.value;
-    account.role = currentUser.role;
-    account.picture = 
 
     console.log(account);
     fetch(`http://localhost:3000/accounts/${currentUser.id}`, {
@@ -126,13 +119,18 @@ function updateAccountDetails() {
         })
 }
 
+fetch('http://localhost:3000/comments')
+    .then((response) => response.json())
+    .then((data) => commentsArray = data)
+
 fetch('http://localhost:3000/posts')
     .then((response) => response.json())
     .then((data) => postsArray = data)
 
 function commentsDelete() {
-    posts.forEach(post => {
-        fetch(`http://localhost:3000/posts/${post.id}`, {
+    let comments = commentsArray.filter(comment => comment.accountId == currentUser.id);
+    comments.forEach(comment => {
+        fetch(`http://localhost:3000/comments/${comment.id}`, {
             method: 'DELETE',
             })
             .then((response) => response.json())

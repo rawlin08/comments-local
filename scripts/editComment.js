@@ -4,23 +4,13 @@ fetch('http://localhost:3000/db')
     .then(() => {
         setTimeout(() => {
             ifLoggedTrue();
-            editPost();
+            editComment();
         }, 100)
 })
 
 let currUser = {
     id: 0,
     role: ''
-}
-
-let post = {
-    id: '',
-    accountId: '',
-    title: '',
-    content: '',
-    createdAt: '',
-    votes: 0,
-    comments: []
 }
 
 let comment = {
@@ -30,6 +20,8 @@ let comment = {
     content: '',
     createdAt: '',
     votes: 0,
+    upVotedAccounts: [],
+    downVotedAccounts: []
 }
 
 const accountStructure = document.querySelector('.accountStructure');
@@ -41,6 +33,8 @@ const curr = localStorage.getItem('currentUser');
 let currentUser = JSON.parse(curr);
 const currPost = localStorage.getItem('currentPost');
 let currentPost = JSON.parse(currPost);
+const curr2 = localStorage.getItem('currentComment');
+let currentComment = JSON.parse(curr2);
 
 function ifLoggedTrue() {
     setTimeout(() => {
@@ -68,9 +62,9 @@ function ifLoggedTrue() {
     }, 50);
 }
 
-function editPost() {
+function editComment() {
     let accountName = jsondata.accounts.find(account => currentUser.id == account.id);
-    let account = jsondata.posts.find(post => currentPost.id == post.id);
+    let account = jsondata.comments.find(comment => currentComment.id == comment.id);
     console.log(account);
     let newPost = document.createElement('div');
     newPost.classList.add('newpost');
@@ -92,24 +86,8 @@ function editPost() {
     commentArea.classList.add('commentArea');
     let postContent = document.createElement('textarea');
     postContent.id = 'postContent';
-    postContent.placeholder = 'Add some context...';
+    postContent.placeholder = 'Edit your comment...';
     postContent.value = account.content;
-    let title = document.createElement('h2');
-    title.classList.add('title')
-    let titleTextBox = document.createElement('textarea');
-    titleTextBox.placeholder = 'Add a title for your post...';
-    titleTextBox.value = account.title;
-    titleTextBox.classList.add('titleTextBox');
-    titleTextBox.classList.add('titleText');
-    let subtext = document.createElement('h2');
-    subtext.classList.add('subText');
-    let titleText = document.createTextNode('Title:');
-    let subText = document.createTextNode('Subtext:');
-    title.appendChild(titleText);
-    subtext.appendChild(subText);
-    commentArea.appendChild(title);
-    commentArea.appendChild(titleTextBox);
-    commentArea.appendChild(subtext);
 
     commentArea.appendChild(postContent);
     newPost.appendChild(commentArea);
@@ -129,27 +107,32 @@ function editPost() {
             console.log('error');
         }
         else {
-            // postId
-            post.id = currentPost.id;
-            console.log(post);
-
-            // title
-            const titleTextGrab = document.querySelector('.titleTextBox');
-            post.title = titleTextGrab.value;
-
-            // content
-            post.content = postContent.value;
+            // comment id
+            comment.id = currentComment.id;
 
             // accountId
-            const a = jsondata.accounts.find(account => account.id == currentUser.id);
-            const b = a.id
-            post.accountId = b;
-    
+            comment.accountId = accountName.id;
+
+            // post id
+            comment.postId = account.postId
+
+            // content
+            comment.content = postContent.value;
+
             // createdAt
             const time = Date().slice(0, -24);
-            post.createdAt = time;
+            comment.createdAt = time;
 
-            postEdit();
+            // votes
+            comment.votes = account.votes;
+
+            // voted accounts
+            comment.upVotedAccounts = account.upVotedAccounts;
+            comment.downVotedAccounts = account.downVotedAccounts;
+
+            console.log(comment);
+
+            commentEdit();
         }
     })
     sendButton.appendChild(send);
@@ -159,25 +142,6 @@ function editPost() {
 
 const contentText = document.querySelector('#postContent');
 
-function postEdit() {
-    fetch(`http://localhost:3000/posts/${currentPost.id}`, {
-        method: 'PATCH',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(post),
-        })
-        .then((response) => response.json())
-        .then((post) => {
-            console.log('Success:', post);
-            location.href = '/sites/index.html'
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        })
-}
-
 function commentEdit() {
     fetch(`http://localhost:3000/comments/${currentComment.id}`, {
         method: 'PATCH',
@@ -185,12 +149,12 @@ function commentEdit() {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(post),
+        body: JSON.stringify(comment),
         })
         .then((response) => response.json())
-        .then((post) => {
-            console.log('Success:', post);
-            location.href = '/sites/index.html'
+        .then((comment) => {
+            console.log('Success:', comment);
+            location.href = '/sites/post.html'
         })
         .catch((error) => {
             console.error('Error:', error);

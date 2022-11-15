@@ -19,8 +19,7 @@ let post = {
     title: '',
     content: '',
     createdAt: '',
-    votes: 0,
-    comments: []
+    votes: 0
 }
 
 let comment = {
@@ -129,9 +128,11 @@ function editPost() {
             console.log('error');
         }
         else {
-            // postId
+            // post id
             post.id = currentPost.id;
-            console.log(post);
+
+            // accountId
+            post.accountId = accountName.id;
 
             // title
             const titleTextGrab = document.querySelector('.titleTextBox');
@@ -140,14 +141,16 @@ function editPost() {
             // content
             post.content = postContent.value;
 
-            // accountId
-            const a = jsondata.accounts.find(account => account.id == currentUser.id);
-            const b = a.id
-            post.accountId = b;
-    
             // createdAt
             const time = Date().slice(0, -24);
             post.createdAt = time;
+
+            // votes
+            post.votes = account.votes;
+
+            // voted accounts
+            post.upVotedAccounts = account.upVotedAccounts;
+            post.downVotedAccounts = account.downVotedAccounts;
 
             postEdit();
         }

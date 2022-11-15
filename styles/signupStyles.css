@@ -2,10 +2,12 @@ body {
     margin: 0;
     background-color: #DAE0E6;
     color: #1a1a1b;
+    font-family: 'Roboto', sans-serif;
 }
 
 button {
     cursor: pointer;
+    font-family: inherit;
 }
 
 /* Navigation Bar */

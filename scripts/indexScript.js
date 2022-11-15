@@ -2,7 +2,6 @@ fetch('http://localhost:3000/db')
     .then((response) => response.json())
     .then((data) => jsondata = data)
     .then(() => {
-        console.log(jsondata.posts);
         if (jsondata.posts.length == 0) { // if the posts db is empty
             displayNoPosts();
         }
@@ -16,16 +15,11 @@ fetch('http://localhost:3000/db')
 fetch('http://localhost:3000/comments')
     .then((response) => response.json())
     .then((data) => commentsArray = data)
-    .then(() => {
-        console.log(commentsArray);
-})
 
 fetch('http://localhost:3000/posts')
     .then((response) => response.json())
     .then((data) => postsArray = data)
-    .then(() => {
-        console.log(postsArray);
-})
+
 // selectors for DOM
 
 const accountStructure = document.querySelector('.accountStructure');
@@ -286,7 +280,6 @@ function displayNoPosts() {
     noposts.classList.add('noposts');
     noposts.textContent = 'There are no posts to show';
     posts.appendChild(noposts);
-    console.log('no posts');
 }
 
 function displayPosts() {
@@ -308,6 +301,9 @@ function displayPosts() {
         let upVote = document.createElement('button');
         upVote.textContent = '+';
         upVote.classList.add('upVote');
+        if (post.upVotedAccounts.includes(currentUser.id)) {
+            upVote.style.color = 'red';
+        }
         upVote.addEventListener('click', () => {
             if (currentUser.id == 0) {
                 location.href = '/sites/login.html';
@@ -327,7 +323,6 @@ function displayPosts() {
                 postPatch.upVotedAccounts = post.upVotedAccounts;
                 postPatch.downVotedAccounts = post.downVotedAccounts;
                 postPatch.comments = post.comments;
-                console.log(postPatch);
                 updateVotes();
                 return
             }
@@ -350,7 +345,6 @@ function displayPosts() {
                 postPatch.upVotedAccounts = post.upVotedAccounts.concat(currentUser.id);
                 postPatch.downVotedAccounts = post.downVotedAccounts;
                 postPatch.comments = post.comments;
-                console.log(postPatch);
                 updateVotes();
             }
         })
@@ -360,6 +354,9 @@ function displayPosts() {
         let downVote = document.createElement('button');
         downVote.classList.add('downVote');
         downVote.textContent = '-';
+        if (post.downVotedAccounts.includes(currentUser.id)) {
+            downVote.style.color = 'red';
+        }
         downVote.addEventListener('click', () => {
             if (currentUser.id == 0) {
                 location.href = '/sites/login.html';
@@ -379,7 +376,6 @@ function displayPosts() {
                 postPatch.upVotedAccounts = post.upVotedAccounts;
                 postPatch.downVotedAccounts = post.downVotedAccounts;
                 postPatch.comments = post.comments;
-                console.log(postPatch);
                 updateVotes();
                 return
             }
@@ -402,7 +398,6 @@ function displayPosts() {
                 postPatch.upVotedAccounts = post.upVotedAccounts;
                 postPatch.downVotedAccounts = post.downVotedAccounts.concat(currentUser.id);
                 postPatch.comments = post.comments;
-                console.log(postPatch);
                 updateVotes();
             }
         })
@@ -447,7 +442,6 @@ function displayPosts() {
             deleteBttn.addEventListener('click', () => {
                 currPost.id = post.id;
                 postDelete();
-                console.log(`deleted post number ${post.id} successsfully`);
             });
             let editBttn = document.createElement('button');
             editBttn.classList.add('edit');
@@ -509,11 +503,6 @@ function displayPosts() {
     })
     console.log('posts');
 }
-
-function accountDefault() {
-    account.username = "";
-    account.password = "";
-};
 
 function accountDelete() {
     fetch(`http://localhost:3000/accounts/${currentUser.id}`, {

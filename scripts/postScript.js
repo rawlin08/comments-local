@@ -16,6 +16,7 @@ const accountStructure = document.querySelector('.accountStructure');
 const mainDOM = document.querySelector('main');
 const accountImageDisplay = document.querySelector('.accountImage');
 const accountImageDiv = document.querySelector('.accountImageDiv');
+const newcomment = document.querySelector('.newcomment');
 
 const curr = localStorage.getItem('currentUser');
 let currentUser = JSON.parse(curr);
@@ -39,12 +40,17 @@ let currComment = {
     accountId: 0,
 }
 
+localStorage.setItem('currentComment', JSON.stringify(currComment));
+
 let comment = {
     id: '',
     accountId: '',
+    postId: '',
     content: '',
     createdAt: '',
     votes: 0,
+    upVotedAccounts: [],
+    downVotedAccounts: []
 }
 
 let postPatch = {
@@ -92,7 +98,7 @@ function ifLoggedFalse() {
     accountControl2a.appendChild(accountControl2b);
     accountStructure.appendChild(accountControl1a);
     accountStructure.appendChild(accountControl2a);
-    accountButton.style.display = 'none';
+    accountImageDiv.style.display = 'none';
 
     let accountBttns = document.createElement('div');
     accountBttns.classList.add('accountBttns');
@@ -138,7 +144,68 @@ function ifLoggedTrue() {
         })
         accountImageDisplay.src = accountName.picture;
         accountStructure.appendChild(logoutBttn);
-    }, 100);
+
+        let newComment = document.createElement('div');
+        newComment.classList.add('newcomment');
+    
+        // logged in account image
+        let aImage = document.createElement('div');
+        aImage.classList.add('aImage');
+        let postAccountImage = document.createElement('img');
+        postAccountImage.classList.add('accountImage');
+        postAccountImage.src = accountName.picture;
+        aImage.appendChild(postAccountImage);
+        newComment.appendChild(aImage);
+        mainDOM.appendChild(newComment);
+
+        // comment area
+        let commentArea = document.createElement('div');
+        commentArea.classList.add('commentArea');
+        let commentContent = document.createElement('textarea');
+        commentContent.id = 'postContent';
+        commentContent.placeholder = 'Add a comment...';
+    
+        commentArea.appendChild(commentContent);
+        newComment.appendChild(commentArea);
+        mainDOM.appendChild(newComment);
+        
+        // send button
+    
+        let sendButton = document.createElement('div');
+        sendButton.classList.add('sendButton');
+        let send = document.createElement('button');
+        sendText = document.createTextNode('SEND');
+        send.appendChild(sendText);
+        send.classList.add('send');
+        const contentText = document.querySelector('#postContent');
+        send.addEventListener('click', () => {
+            // checks if textarea is blank
+            if (contentText.value == '') {
+                console.log('error');
+            }
+            else {
+                // accountId
+                const a = jsondata.accounts.find(account => account.id == currentUser.id);
+                const b = a.id
+                comment.accountId = b;
+                
+                // postId
+                comment.postId = currentPost.id;
+
+                // content
+                comment.content = contentText.value;
+        
+                // createdAt
+                const time = Date().slice(0, -24);
+                comment.createdAt = time;
+    
+                commentCreate();
+            }
+        })
+        sendButton.appendChild(send);
+        newComment.appendChild(sendButton);
+        mainDOM.appendChild(newComment);
+    }, 50)
 }
 
 function displayPost() {
@@ -307,9 +374,11 @@ function displayPost() {
         replyBttn.classList.add('reply');
         replyBttn.textContent = '↺ Reply';
         replyBttn.addEventListener('click', () => {
-            currPost.id = post.id;
-            localStorage.setItem('currentPost', JSON.stringify(currPost));
-            location.href = '/sites/post.html';
+            if (currentUser.id != 0) {
+                currPost.id = a.id;
+                localStorage.setItem('currentPost', JSON.stringify(currPost));
+                location.href = '/sites/post.html';
+            }
         });
         tools.appendChild(replyBttn);
     }
@@ -352,6 +421,9 @@ function displayComments() {
             votes.classList.add('votes');
             let upVote = document.createElement('button');
             upVote.textContent = '+';
+            if (post.upVotedAccounts.includes(currentUser.id)) {
+                upVote.style.color = 'red';
+            }
             upVote.classList.add('upVote');
             upVote.addEventListener('click', () => {
                 if (currentUser.id == 0) {
@@ -407,6 +479,9 @@ function displayComments() {
             let downVote = document.createElement('button');
             downVote.classList.add('downVote');
             downVote.textContent = '-';
+            if (post.downVotedAccounts.includes(currentUser.id)) {
+                downVote.style.color = 'red';
+            }
             downVote.addEventListener('click', () => {
                 if (currentUser.id == 0) {
                     location.href = '/sites/login.html';
@@ -494,18 +569,18 @@ function displayComments() {
                 let deleteBttn = document.createElement('button');
                 deleteBttn.classList.add('delete');
                 deleteBttn.textContent = '✁ Delete';
+                console.log(post.id);
                 deleteBttn.addEventListener('click', () => {
                     currComment.id = post.id;
-                    postDelete();
-                    console.log(`deleted post number ${post.id} successsfully`);
+                    commentDelete();
                 });
                 let editBttn = document.createElement('button');
                 editBttn.classList.add('edit');
                 editBttn.textContent = '✎ Edit';
                 editBttn.addEventListener('click', () => {
-                    currComment.id = comment.id;
+                    currComment.id = post.id;
                     localStorage.setItem('currentComment', JSON.stringify(currComment));
-                    location.href = '/sites/editPost.html';
+                    location.href = '/sites/editComment.html';
                 });
                 tools.appendChild(deleteBttn);
                 tools.appendChild(editBttn);
@@ -515,8 +590,8 @@ function displayComments() {
                 replyBttn.classList.add('reply');
                 replyBttn.textContent = '↺ Reply';
                 replyBttn.addEventListener('click', () => {
-                    currPost.id = post.id;
-                    localStorage.setItem('currentPost', JSON.stringify(currPost));
+                    currComment.id = post.id;
+                    localStorage.setItem('currentPost', JSON.stringify(currComment));
                     location.href = '/sites/post.html';
                 });
                 tools.appendChild(replyBttn);
@@ -557,6 +632,44 @@ function postDelete() {
         .catch((error) => {
             console.error('Error:', error);
         })
+};
+
+function commentDelete() {
+    fetch(`http://localhost:3000/comments/${currComment.id}`, {
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        })
+        .then((response) => response.json())
+        .then((post) => {
+            console.log('Success:', post);
+            location.href = '/sites/post.html'
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        })
+}
+
+function commentCreate() {
+    fetch('http://localhost:3000/comments', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(comment),
+        })
+        .then((response) => response.json())
+        .then((post) => {
+            console.log('Success:', post);
+            location.href = '/sites/post.html'
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        })
+        .then();
 };
 
 function updateVotes() {

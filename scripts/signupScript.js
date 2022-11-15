@@ -67,11 +67,24 @@ function accountWrite() {
         })
 }
 
+
 function accountLogin() {
-    setTimeout(() => {
-        let arrayLength = jsondata.accounts.length + 1;
-        currUser.id = arrayLength;
-        localStorage.setItem('currentUser', JSON.stringify(currUser));
-        location.href = '/sites/index.html';
-    }, 50);
+    fetch('http://localhost:3000/accounts')
+        .then((response) => response.json())
+        .then((data) => accountArray = data)
+        .then(setTimeout(() => {
+            let lastElement = accountArray.pop();
+            if (lastElement) {
+                let newUserId = lastElement.id + 1
+                currUser.id = newUserId;
+                localStorage.setItem('currentUser', JSON.stringify(currUser));
+                location.href = '/sites/index.html';
+            }
+            else {
+                let newUserId = accountArray.length + 1;
+                currUser.id = newUserId;
+                localStorage.setItem('currentUser', JSON.stringify(currUser));
+                location.href = '/sites/index.html';
+            }
+    }, 50))
 }
