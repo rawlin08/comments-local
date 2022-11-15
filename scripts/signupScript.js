@@ -1,6 +1,6 @@
 fetch('http://localhost:3000/db')
     .then((response) => response.json())
-    .then((data) => jsondata = data);
+    .then((data) => jsondata = data)
 
 // selectors for DOM
 
@@ -15,13 +15,26 @@ signupBttn.addEventListener('click', () => {
     accountCreate();
 })
 
+let currUser = {
+    id: 0,
+    role: ''
+}
+
+let account = {
+    id: '',
+    name: '',
+    username: '',
+    password: '',
+    role: 'user',
+    picture: '/images/avatars/defaultUser.png'
+}
+
+localStorage.setItem('currentUser', JSON.stringify(currUser));
+
 //functions
 
 function accountCreate() {
-    console.log('hit');
     let match = jsondata.accounts.find(account => account.username == signupUsername.value);
-    console.log(match);
-
     if (signupUsername.value === '' || signupPassword.value === '') {
         signupError.textContent = 'Username and Password is Required';
     }
@@ -32,10 +45,7 @@ function accountCreate() {
         account.username = signupUsername.value;
         account.password = signupPassword.value;
         accountWrite();
-        accountDefault();
-        setTimeout(() => {
-            console.log('delayed for 5 seconds');
-        }, 5000)
+        accountLogin();
     }
 }
 
@@ -55,4 +65,13 @@ function accountWrite() {
         .catch((error) => {
             console.error('Error:', error);
         })
+}
+
+function accountLogin() {
+    setTimeout(() => {
+        let arrayLength = jsondata.accounts.length + 1;
+        currUser.id = arrayLength;
+        localStorage.setItem('currentUser', JSON.stringify(currUser));
+        location.href = '/sites/index.html';
+    }, 50);
 }

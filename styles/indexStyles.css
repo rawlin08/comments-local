@@ -8,7 +8,7 @@ button {
     cursor: pointer;
 }
 
-/* Navigation Bar */
+/* Header Bar */
 
 header {
     justify-content: space-between;
@@ -28,6 +28,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 
 #searchBar {
@@ -38,11 +39,40 @@ nav {
     color: #67727E;
 }
 
+.submit {
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.greeting {
+    color: #DAE0E6;
+    font-size: 20px;
+    margin: 0;
+}
+
+.logoutBttn {
+    background-color: transparent;
+    border: none;
+    color: #DAE0E6;
+}
+
+.settings {
+    margin: 0;
+    color: #DAE0E6;
+    background-color: transparent;
+    border: none;
+}
+
 .accountStructure {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-end;
     margin: 20px 10px 20px 10px;
-    gap: 10px;
+}
+
+.other {
+    text-align: center;
 }
 
 .accountControl {
@@ -62,8 +92,14 @@ nav {
     text-decoration: none;
 }
 
+.accountImageDiv {
+    display: flex;
+    align-items: center;
+}
+
 .accountImage {
     width: 40px;
+    height: 40px;
     border: 2px solid blue;
     border-radius: 25px;
 }
@@ -74,13 +110,16 @@ nav {
     justify-content: right;
 }
 
-/* Index Page */
+/* New Post Area */
+
+main {
+    margin: 0 209px;
+}
 
 .control {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 0 30px 0;
 }
 
 .accountBttns {
@@ -99,13 +138,13 @@ nav {
 .posts {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: center;
+    align-items: self-start;
     margin: 0 0 30px 0;
     gap: 20px;
 }
 
-main {
-    margin: 0 209px;
+.commentTitle {
+    margin: 10px 0 0 0;
 }
 
 .title {
@@ -124,6 +163,8 @@ main {
     width: 616px;
 }
 
+/* Posts Display Area */
+
 .post {
     display: flex;
     background-color: #FFFFFF;
@@ -141,11 +182,6 @@ main {
 }
 
 .commentCount {
-    background-color: transparent;
-    border: none;
-}
-
-.goToPost {
     background-color: transparent;
     border: none;
 }
@@ -261,41 +297,4 @@ main {
     color: #FFFFFF;
     font-size: 16px;
     padding: 12px 31px 12px 31px;
-}
-
-/* Login Page */
-
-.loginPage {
-    display: flex;
-    justify-content: space-around;
-}
-
-.text {
-    margin: 10px;
-}
-
-.header {
-    margin: 0;
-}
-
-.signupError {
-    color: red;
-    font-size: 13px;
-}
-
-
-.signup {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.loginError {
-    color: red;
-}
-
-.login {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
 }

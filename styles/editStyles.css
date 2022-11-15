@@ -16,33 +16,29 @@ header {
 }
 
 nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
 }
 
 .homelink {
     padding: 20px;
 }
 
-.search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#searchBar {
-    border: none;
-    border-radius: 10px;
-    width: 400px;
-    padding: 10px;
-    color: #67727E;
-}
-
 .accountStructure {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-end;
     margin: 20px 10px 20px 10px;
-    gap: 10px;
+}
+
+.logoutBttn {
+    background-color: transparent;
+    border: none;
+    color: #DAE0E6;
+}
+
+.other {
+    text-align: center;
 }
 
 .accountControl {
@@ -62,8 +58,14 @@ nav {
     text-decoration: none;
 }
 
+.accountImageDiv {
+    display: flex;
+    align-items: center;
+}
+
 .accountImage {
     width: 40px;
+    height: 40px;
     border: 2px solid blue;
     border-radius: 25px;
 }
@@ -108,6 +110,13 @@ nav {
     align-items: center;
     margin: 0 0 30px 0;
     gap: 20px;
+}
+
+.settings {
+    margin: 0;
+    color: #DAE0E6;
+    background-color: transparent;
+    border: none;
 }
 
 .commentTitle {
@@ -275,9 +284,9 @@ main {
 
 /* Login Page */
 
-.signupPage {
+.loginPage {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .text {
@@ -290,21 +299,22 @@ main {
 
 .signupError {
     color: red;
+    font-size: 13px;
 }
 
-.signupBttn {
-    margin: 20px 60px 0 60px;
-    border: none;
-    background-color: #5357b6;
-    color: #DAE0E6;
-    border-radius: 8px;
-    padding: 20px;
-    font-size: 20px;
-}
 
 .signup {
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 20px 0 0 0;
+}
+
+.loginError {
+    color: red;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }

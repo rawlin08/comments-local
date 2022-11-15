@@ -15,55 +15,42 @@ header {
     background-color: #5357b6;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
 }
 
 .homelink {
     padding: 20px;
 }
 
-.search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#searchBar {
-    border: none;
-    border-radius: 10px;
-    width: 400px;
-    padding: 10px;
-    color: #67727E;
-}
-
 .accountStructure {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-end;
     margin: 20px 10px 20px 10px;
-    gap: 10px;
 }
 
-.accountControl {
+.logoutBttn {
+    background-color: transparent;
     border: none;
-    border-radius: 20px;
-    padding: 10px 30px 10px 30px;
-    width: 150px;
+    color: #DAE0E6;
 }
 
-.mainControl {
-    border: none;
-    border-radius: 20px;
-    padding: 10px 30px 10px 30px;
-    width: 150px;
-    background-color: #1a1a1b;
-    color: #FFFFFF;
-    text-decoration: none;
+.accountImageDiv {
+    display: flex;
+    align-items: center;
 }
 
 .accountImage {
     width: 40px;
+    height: 40px;
     border: 2px solid blue;
     border-radius: 25px;
 }
@@ -95,27 +82,37 @@ nav {
     justify-content: center;
 }
 
-.newpost {
+.post, .commentOnPost {
     display: flex;
     background-color: #FFFFFF;
     border-radius: 8px;
     padding: 24px;
+    min-height: 129px;
+    width: 693px;
+    color: #67727E;
+    font-size: 16px;
+    margin: 20px 0;
 }
 
-.posts {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.commentOnPost {
+    margin: 20px 0 0 0;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     margin: 0 0 30px 0;
-    gap: 20px;
+}
+
+.border {
+    border: 1px solid #454545;
+    width: 693px;
+    border-radius: 8px;
 }
 
 .commentTitle {
     margin: 10px 0 0 0;
-}
-
-main {
-    margin: 0 209px;
 }
 
 .title {
@@ -134,16 +131,6 @@ main {
     width: 616px;
 }
 
-.post {
-    display: flex;
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    padding: 24px;
-    min-height: 129px;
-    width: 693px;
-    color: #67727E;
-    font-size: 16px;
-}
 
 .options {
     display: flex;
@@ -273,11 +260,18 @@ main {
     padding: 12px 31px 12px 31px;
 }
 
+.accountControl {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px 10px 30px;
+    width: 150px;
+}
+
 /* Login Page */
 
-.signupPage {
+.loginPage {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .text {
@@ -290,21 +284,22 @@ main {
 
 .signupError {
     color: red;
+    font-size: 13px;
 }
 
-.signupBttn {
-    margin: 20px 60px 0 60px;
-    border: none;
-    background-color: #5357b6;
-    color: #DAE0E6;
-    border-radius: 8px;
-    padding: 20px;
-    font-size: 20px;
-}
 
 .signup {
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 20px 0 0 0;
+}
+
+.loginError {
+    color: red;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
